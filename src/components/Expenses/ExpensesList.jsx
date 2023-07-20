@@ -1,15 +1,14 @@
-import React from "react";
+import { styled } from "styled-components";
 
 import ExpenseItem from "./ExpenseItem";
-import './ExpensesList.css'
 
 const ExpensesList = props => {
   if (props.items.length === 0) {
-    return<h2 className="expenses-list__fallback">Found no expenses.</h2>
+    return<Fallback>Found no expenses.</Fallback>
   }
 
   return (
-    <ul className="expenses-list">
+    <Container>
       {props.items.map((expense) => (
       <ExpenseItem 
         key={expense.id}
@@ -18,8 +17,18 @@ const ExpensesList = props => {
         date={expense.date} 
         />
       ))}
-    </ul>
+    </Container>
   );
 };
 
-export default ExpensesList
+export default ExpensesList;
+
+const Container = styled.ul`
+  list-style: none;
+  padding: 0;
+`;
+
+const Fallback = styled.h2`
+  color: white;
+  text-align: center;
+`;

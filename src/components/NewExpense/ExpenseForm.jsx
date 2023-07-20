@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-
-import './ExpenseForm.css';
+import { useState } from 'react';
+import { styled } from 'styled-components';
 
 const ExpenseForm = (props) => {
   const [enteredTitle, setEnteredTitle] = useState('');
@@ -36,8 +35,8 @@ const ExpenseForm = (props) => {
 
   return (
     <form onSubmit={submitHandler}>
-      <div className='new-expense__controls'>
-        <div className='new-expense__control'>
+      <Container>
+        <div>
           <label>Title</label>
           <input
             type='text'
@@ -45,7 +44,8 @@ const ExpenseForm = (props) => {
             onChange={titleChangeHandler}
           />
         </div>
-        <div className='new-expense__control'>
+
+        <div>
           <label>Amount</label>
           <input
             type='number'
@@ -55,23 +55,51 @@ const ExpenseForm = (props) => {
             onChange={amountChangeHandler}
           />
         </div>
-        <div className='new-expense__control'>
+
+        <div>
           <label>Date</label>
           <input
             type='date'
             min='2019-01-01'
-            max='2022-12-31'
+            max='2023-12-31'
             value={enteredDate}
             onChange={dateChangeHandler}
           />
         </div>
-      </div>
-      <div className='new-expense__actions'>
+      </Container>
+      <Actions>
         <button type="button" onClick={props.onCancel}>Cancel</button>
         <button type='submit'>Add Expense</button>
-      </div>
+      </Actions>
     </form>
   );
 };
 
 export default ExpenseForm;
+
+const Container = styled.div`
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1rem;
+  text-align: left;
+
+  label {
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    display: block;
+  }
+
+  input {
+    font: inherit;
+    padding: 0.5rem;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+    width: 20rem;
+    max-width: 100%;
+  }
+`;
+
+const Actions = styled.div`
+  text-align: right;
+`;

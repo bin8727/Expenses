@@ -2,6 +2,7 @@ import React, {useState} from 'react';
 
 import Expenses from './components/Expenses/Expenses';
 import NewExpense from './components/NewExpense/NewExpense';
+import GlobalyStyle from './GlobalStyle';
 
 const DUMMY_EXPENSES = [
   {
@@ -39,10 +40,11 @@ const App = () => {
   };
 
   return (
-    <div>
+    <>
+      <GlobalyStyle />
       <NewExpense onAddExpense={addExpenseHandler} />
       <Expenses items={expenses} />
-    </div>
+    </>
   );
 }
 
